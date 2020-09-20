@@ -13,6 +13,7 @@ public class IsExistClass {
     public void isExist(){
         //Check if the Flower image is existing on your desktop
 
+        
         //Find the path of the image
         String pathOfTheFile="/Users/techproed/Desktop/FLOWER. IMG.jpg";
 

@@ -29,5 +29,6 @@ public class ActionsClass2 extends TestBase {
         String expectedTitle="Your Account";
         Assert.assertTrue(actualPageTitle.contains(expectedTitle));
 
+
     }
 }
