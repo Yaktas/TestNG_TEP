@@ -30,7 +30,7 @@ public class WebTables extends TestBase {
 
 
 //    Create a test method: printData(int row, int column); This method should print the given cell. Example: printData(2,3); should print 2nd row,3rd column
-    @Test
+    @Test(groups ="regression1")
     public void entireTable() throws InterruptedException {
         login();
 //    Create a test method: entireTable() and
