@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ExcelUtil {
+
     private Workbook workBook;
     private Sheet workSheet;
     private String path;
@@ -51,7 +52,6 @@ public class ExcelUtil {
             throw new RuntimeException(e);
         }
     }
-
     //============getting all data into two dimentional array and returning the data===
     public String[][] getDataArray() {
         String[][] data = new String[rowCount()][columnCount()];
@@ -67,12 +67,10 @@ public class ExcelUtil {
     //This will get the list of the data in the excel file
     //This is a list of map. This takes the data as string and will return the data as a Map of String
     public List<Map<String, String>> getDataList() {
-
         // getting all columns
         List<String> columns = getColumnsNames();
         // method will return this
         List<Map<String, String>> data = new ArrayList<>();
-
         for (int i = 1; i < rowCount(); i++) {
             // get each row
             Row row = workSheet.getRow(i);
@@ -85,7 +83,6 @@ public class ExcelUtil {
             }
             data.add(rowMap);
         }
-
         return data;
     }
     //==============going to the first row and reading each row one by one==================//
