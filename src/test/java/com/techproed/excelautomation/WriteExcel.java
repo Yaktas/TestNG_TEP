@@ -22,9 +22,8 @@ public class WriteExcel {
         Cell cell4=row.createCell(3);
 //        Write “POPULATION” on that cell
         cell4.setCellValue("POPULATION");
-        //row.createCell(3).setCellValue("POPULATION");//SHORT VERSION
-        //FileInputStream is to READ, FileOutputStream is to WRITE
-
+//       row.createCell(3).setCellValue("POPULATION");//SHORT VERSION
+//       FileInputStream is to READ, FileOutputStream is to WRITE
 //        Create a cell on the 2nd row 4th cell(index3), and write 150000 -D2 in the excel
         sheet.getRow(1).createCell(3).setCellValue("150000");
 //        Create a cell on the 3rd row 4th cell(index3), and write 250000
@@ -35,11 +34,9 @@ public class WriteExcel {
         FileOutputStream fileOutputStream=new FileOutputStream(path);
         workbook.write(fileOutputStream);
 //        Close the file
-
         fileInputStream.close();
         fileOutputStream.close();
         workbook.close();
-
 
     }
 

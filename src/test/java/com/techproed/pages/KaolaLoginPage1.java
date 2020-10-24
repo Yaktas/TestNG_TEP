@@ -1,5 +1,6 @@
 package com.techproed.pages;
 
+import com.techproed.utilities.ConfigReader;
 import com.techproed.utilities.Driver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,4 +21,15 @@ public class KaolaLoginPage1 {
 
     @FindBy(id = "btnSubmit")
     public WebElement kaolaLoginButton;
+
+    public void login(){
+        Driver.getDriver().get(ConfigReader.getProperty("kaola_url"));
+        KaolaMainPage1 kaolaMainPage1=new KaolaMainPage1();
+        kaolaMainPage1.kaolaMainLoginButton.click();
+        KaolaLoginPage1 kaolaLoginPage1=new KaolaLoginPage1();
+        kaolaLoginPage1.kaolaUsername.sendKeys(ConfigReader.getProperty("username"));
+        kaolaLoginPage1.kaolaPass.sendKeys(ConfigReader.getProperty("password"));
+        kaolaLoginPage1.kaolaLoginButton.click();
+    }
+
 }
