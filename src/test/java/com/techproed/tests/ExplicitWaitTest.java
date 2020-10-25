@@ -1,5 +1,6 @@
 package com.techproed.tests;
 
+import com.techproed.utilities.ReusableMethods;
 import com.techproed.utilities.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -9,6 +10,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class ExplicitWaitTest extends TestBase {
+    ReusableMethods rm=new ReusableMethods();
     @Test
     public void explicitWait(){
         //CREATE WAIT OBJECT
@@ -24,6 +26,7 @@ public class ExplicitWaitTest extends TestBase {
         //This is where I need to wait
         //What is our expected condition???
         //Expected condition is to wait for the It's gone element
+
         WebElement goneMessage=wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//p[@id='message']")));
 //        WebElement goneMessage=driver.findElement(By.xpath("//p[@id='message']"));
         String goneMessageText=goneMessage.getText();

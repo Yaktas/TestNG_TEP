@@ -22,6 +22,7 @@ public class ExplicitWaitTest1 extends TestBase {
 
 //        And verify the message is equal to “It's enabled!”
         WebDriverWait wait=new WebDriverWait(driver,10);
+        //WebElement enabledMessage=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("message")));
         WebElement enabledMessage=wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("message")));
         String enabledMessageText=enabledMessage.getText();
         Assert.assertEquals(enabledMessageText,"It's enabled!");

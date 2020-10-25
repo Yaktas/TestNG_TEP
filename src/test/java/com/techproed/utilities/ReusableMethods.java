@@ -138,4 +138,9 @@ public class ReusableMethods {
 
         return element;
     }
+
+    public static Boolean waitForText(By locator,String text, int timeout) {
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), timeout);
+        return wait.until(ExpectedConditions.textToBe(locator,text));
+    }
 }

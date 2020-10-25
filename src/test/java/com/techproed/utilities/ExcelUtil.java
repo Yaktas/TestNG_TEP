@@ -32,6 +32,28 @@ public class ExcelUtil {
             throw new RuntimeException(e);
         }
     }
+    //This will get the list of the data in the excel file
+    //This is a list of map of string. This takes the data as string and will return the data as a Map of String
+    public List<Map<String, String>> getDataList() {
+        // getting all columns
+        List<String> columns = getColumnsNames();
+        // method will return this
+        List<Map<String, String>> data = new ArrayList<>();
+        for (int i = 1; i < rowCount(); i++) {
+            // get each row
+            Row row = workSheet.getRow(i);
+            // creating map of the row using the column and value
+            // key=column, value=cell
+            Map<String, String> rowMap = new HashMap<String, String>();
+            for (Cell cell : row) {
+                int columnIndex = cell.getColumnIndex();
+                rowMap.put(columns.get(columnIndex), cell.toString());
+            }
+            data.add(rowMap);
+        }
+        return data;
+    }
+
     //===============Getting the number of columns in a specific single row=================
     public int columnCount() {
         //getting how many numbers in row 1
@@ -64,27 +86,7 @@ public class ExcelUtil {
         return data;
     }
 
-    //This will get the list of the data in the excel file
-    //This is a list of map. This takes the data as string and will return the data as a Map of String
-    public List<Map<String, String>> getDataList() {
-        // getting all columns
-        List<String> columns = getColumnsNames();
-        // method will return this
-        List<Map<String, String>> data = new ArrayList<>();
-        for (int i = 1; i < rowCount(); i++) {
-            // get each row
-            Row row = workSheet.getRow(i);
-            // creating map of the row using the column and value
-            // key=column, value=cell
-            Map<String, String> rowMap = new HashMap<String, String>();
-            for (Cell cell : row) {
-                int columnIndex = cell.getColumnIndex();
-                rowMap.put(columns.get(columnIndex), cell.toString());
-            }
-            data.add(rowMap);
-        }
-        return data;
-    }
+
     //==============going to the first row and reading each row one by one==================//
     public List<String> getColumnsNames() {
         List<String> columns = new ArrayList<>();

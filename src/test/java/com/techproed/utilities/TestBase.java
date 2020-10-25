@@ -27,11 +27,11 @@ public abstract class TestBase {
         extentHtmlReporter = new ExtentHtmlReporter(filePath);//2. creating the report with the path we created
         extentReports.attachReporter(extentHtmlReporter);//3. attaching the html report to our custom report
         //WE CAN ADD CUSTOM INFO. NOT NECESSARY. JUST TO GIVE MORE INFORMATION TO THE USER OR TEAM
-        extentReports.setSystemInfo("Environment", "Environment Name");
+        extentReports.setSystemInfo("Environment", "QA");
         extentReports.setSystemInfo("Browser", ConfigReader.getProperty("browser"));
         extentReports.setSystemInfo("Automation Engineer", "ENGINEER INFORMATION");
-        extentHtmlReporter.config().setDocumentTitle("FHC Trip Reports");
-        extentHtmlReporter.config().setReportName("FHC Trip Automation Reports");
+        extentHtmlReporter.config().setDocumentTitle("Koala Reports");
+        extentHtmlReporter.config().setReportName("Koala Automation Reports");
 
     }
 
@@ -40,7 +40,7 @@ public abstract class TestBase {
         driver = Driver.getDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-        driver.get(ConfigReader.getProperty("fhc_login_url"));
+        driver.get(ConfigReader.getProperty("kaola_url"));
     }
 
     @AfterMethod(alwaysRun = true)//In AfterMethod, we are getting the screenshots and attaching the report when test fails
@@ -51,8 +51,11 @@ public abstract class TestBase {
             extentTest.fail(result.getName());
             extentTest.addScreenCaptureFromPath(screenshotLocation);//adding the screenshot to the report
             extentTest.fail(result.getThrowable());
+
         } else if (result.getStatus() == ITestResult.SKIP) {
             extentTest.skip("Test Case is skipped: " + result.getName());
+        }else if(result.getStatus() == ITestResult.SUCCESS){
+            extentTest.pass("Test Case is passed: " + result.getName());
         }
         Driver.closeDriver();
     }
