@@ -1,6 +1,7 @@
 package com.techproed.tests;
 
 import com.techproed.pages.FaceLoginPage;
+import com.techproed.utilities.Driver;
 import com.techproed.utilities.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -13,7 +14,7 @@ public class FaceLogin extends TestBase {
     public void logInTest() throws InterruptedException {
 
         //Go to the webpage
-        driver.get("https://www.facebook.com/");
+        Driver.getDriver().get("https://www.facebook.com/");
         //Create FaceLoginPage object
         FaceLoginPage faceLoginPage=new FaceLoginPage(driver);
         //send username

@@ -54,8 +54,6 @@ public abstract class TestBase {
 
         } else if (result.getStatus() == ITestResult.SKIP) {
             extentTest.skip("Test Case is skipped: " + result.getName());
-        }else if(result.getStatus() == ITestResult.SUCCESS){
-            extentTest.pass("Test Case is passed: " + result.getName());
         }
         Driver.closeDriver();
     }
