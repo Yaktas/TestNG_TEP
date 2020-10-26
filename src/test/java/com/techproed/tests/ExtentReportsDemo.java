@@ -15,17 +15,17 @@ public class ExtentReportsDemo extends TestBase {
         extentTest=extentReports.createTest("Kaola Login Test","Negative login test");
         //extentTest is used to log custom information
         extentTest.info("Opening the browser");
-        Driver.getDriver().get("http://www.kaolapalace-qa-environment2.com/Account/Logon");
-        WebElement userNameBox = Driver.getDriver().findElement(By.id("UserName"));
-        WebElement password = Driver.getDriver().findElement(By.id("Password"));
-        WebElement logInButton = Driver.getDriver().findElement(By.id("btnSubmit"));
+        driver.get("http://www.kaolapalace-qa-environment2.com/Account/Logon");
+        WebElement userNameBox = driver.findElement(By.id("UserName"));
+        WebElement password = driver.findElement(By.id("Password"));
+        WebElement logInButton = driver.findElement(By.id("btnSubmit"));
         extentTest.info("entering correct username");
         userNameBox.sendKeys("manager2");
         extentTest.info("entering incorrect password");
         password.sendKeys("fakepassword");
         extentTest.info("clicking on the login button");
         logInButton.click();
-        WebElement errorMessage=Driver.getDriver().findElement(By.id("divMessageResult"));
+        WebElement errorMessage=driver.findElement(By.id("divMessageResult"));
         String errorMessageText=errorMessage.getText();
         System.out.println(errorMessageText);
         extentTest.info("Verifying the error message");

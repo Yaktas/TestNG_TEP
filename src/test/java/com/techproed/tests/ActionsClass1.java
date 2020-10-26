@@ -27,6 +27,5 @@ public class ActionsClass1 extends TestBase {
         Assert.assertEquals(actualAlertMessage,expectedAlertMessage);
         //    Then accept the alert
         driver.switchTo().alert().accept();
-
     }
 }
