@@ -16,9 +16,9 @@ public class FirstDriverTest {
 
         //driver   ==== >>>>>>>  Driver.getDriver();
         Driver.getDriver().get(ConfigReader.getProperty("kaola_url"));
-        KaolaMainPage kaolaMainPage=new KaolaMainPage(Driver.getDriver());
+        KaolaMainPage kaolaMainPage=new KaolaMainPage();
         kaolaMainPage.kaolaMainLoginButton.click();
-        KaolaLoginPage kaolaLoginPage=new KaolaLoginPage(Driver.getDriver());
+        KaolaLoginPage kaolaLoginPage=new KaolaLoginPage();
         kaolaLoginPage.kaolaUsername.sendKeys(ConfigReader.getProperty("username"));
         kaolaLoginPage.kaolaPass.sendKeys(ConfigReader.getProperty("password"));
         kaolaLoginPage.kaolaLoginButton.click();

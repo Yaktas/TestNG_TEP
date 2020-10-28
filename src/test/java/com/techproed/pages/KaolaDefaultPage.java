@@ -1,5 +1,6 @@
 package com.techproed.pages;
 
+import com.techproed.utilities.Driver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,11 +8,10 @@ import org.openqa.selenium.support.PageFactory;
 
 public class KaolaDefaultPage {
 
-    WebDriver driver;
 
-    public KaolaDefaultPage(WebDriver driver){
-        this.driver=driver;
-        PageFactory.initElements(driver,this);
+
+    public KaolaDefaultPage(){
+        PageFactory.initElements(Driver.getDriver(),this);
     }
 
     @FindBy(linkText = "Hotel Management")
@@ -19,6 +19,11 @@ public class KaolaDefaultPage {
 
     @FindBy(partialLinkText = "Hotel Rooms")
     public WebElement hotelRooms;
+
+    @FindBy(partialLinkText = "Room reservations")
+    public WebElement roomReservations;
+
+    //a[@href='/admin/RoomReservationAdmin']
 
 
 

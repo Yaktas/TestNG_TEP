@@ -1,5 +1,6 @@
 package com.techproed.tests;
 
+import com.techproed.utilities.Driver;
 import com.techproed.utilities.ReusableMethods;
 import com.techproed.utilities.TestBase;
 import org.openqa.selenium.By;
@@ -14,11 +15,11 @@ public class ExplicitWaitTest extends TestBase {
     @Test
     public void explicitWait(){
         //CREATE WAIT OBJECT
-        WebDriverWait wait = new WebDriverWait(driver,10);
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),10);
 //        Go to https://the-internet.herokuapp.com/dynamic_controls
-        driver.get("https://the-internet.herokuapp.com/dynamic_controls");
+        Driver.getDriver().get("https://the-internet.herokuapp.com/dynamic_controls");
 //        Click on remove button
-        WebElement removeButton=driver.findElement(By.xpath("(//button[@type='button'])"));
+        WebElement removeButton=Driver.getDriver().findElement(By.xpath("(//button[@type='button'])"));
         removeButton.click();
 
 
@@ -33,7 +34,7 @@ public class ExplicitWaitTest extends TestBase {
         Assert.assertEquals(goneMessageText,"It's gone!");
 
 //        Then click on Add button
-        WebElement addButton=driver.findElement(By.xpath("(//button[@type='button'])[1]"));
+        WebElement addButton=Driver.getDriver().findElement(By.xpath("(//button[@type='button'])[1]"));
         addButton.click();
 
 //        And verify the message is equal to “It's back!”

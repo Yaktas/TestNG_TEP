@@ -1,5 +1,6 @@
 package com.techproed.pages;
 
+import com.techproed.utilities.Driver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,13 +10,10 @@ import org.openqa.selenium.support.PageFactory;
 //THIS CLASS WILL ONLY HAVE PAGE OBJECTS/PAGE ELEMENTS
 public class FaceLoginPage {
 
-    WebDriver driver;
-
     //Create the constructor to initialize the driver
-    public FaceLoginPage(WebDriver driver){
-        this.driver=driver;
+    public FaceLoginPage(){
         //initElements initializes the driver in page object model
-        PageFactory.initElements(driver,this);
+     PageFactory.initElements(Driver.getDriver(),this);
         //We use initElements to initialize the driver in the constructor
     }
 

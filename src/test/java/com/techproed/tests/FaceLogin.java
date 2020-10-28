@@ -16,8 +16,8 @@ public class FaceLogin extends TestBase {
         //Go to the webpage
         Driver.getDriver().get("https://www.facebook.com/");
         //Create FaceLoginPage object
-        FaceLoginPage faceLoginPage=new FaceLoginPage(driver);
-        //send username
+        FaceLoginPage faceLoginPage=new FaceLoginPage();
+        //send usernam
         faceLoginPage.username.sendKeys("sdgagarga3erghae");
         faceLoginPage.password.sendKeys("asdgsadfhgsdhfsd");
         faceLoginPage.login.click();

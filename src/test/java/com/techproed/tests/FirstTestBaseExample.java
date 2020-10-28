@@ -1,5 +1,6 @@
 package com.techproed.tests;
 
+import com.techproed.utilities.Driver;
 import com.techproed.utilities.TestBase;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -12,6 +13,6 @@ public class FirstTestBaseExample extends TestBase {
     //Because we extended the TestBase class
     @Test
     public void test1(){
-        driver.get("https://www.google.com/");
+        Driver.getDriver().get("https://www.google.com/");
     }
 }

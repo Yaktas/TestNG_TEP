@@ -1,5 +1,6 @@
 package com.techproed.tests;
 
+import com.techproed.utilities.Driver;
 import com.techproed.utilities.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -13,12 +14,12 @@ public class FileDownload extends TestBase {
 
     @Test
     public void downloadTest() throws InterruptedException {
-        driver.get("https://the-internet.herokuapp.com/download");
-        WebElement flower=driver.findElement(By.linkText("FLOWER.JPG"));
+        Driver.getDriver().get("https://the-internet.herokuapp.com/download");
+        WebElement flower= Driver.getDriver().findElement(By.linkText("FLOWER.JPG"));
         flower.click();
         //Path of the file
         //We must put some wait for the download to complete
-        Thread.sleep(5000);
+        Thread.sleep(1000);
 
         //We can find the user folder using System.getProperty();
         String userFolder=System.getProperty("user.home");//Users/techproed

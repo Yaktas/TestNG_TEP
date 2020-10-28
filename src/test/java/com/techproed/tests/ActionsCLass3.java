@@ -1,5 +1,6 @@
 package com.techproed.tests;
 
+import com.techproed.utilities.Driver;
 import com.techproed.utilities.TestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -13,9 +14,9 @@ public class ActionsCLass3 extends TestBase {
 //    Highlight the search box by double clicking
     @Test
     public void keysUpDown() throws InterruptedException {
-        driver.get("https://www.google.com/");
-        WebElement searchBox=driver.findElement(By.name("q"));
-        Actions actions = new Actions(driver);
+        Driver.getDriver().get("https://www.google.com/");
+        WebElement searchBox=Driver.getDriver().findElement(By.name("q"));
+        Actions actions = new Actions(Driver.getDriver());
         Thread.sleep(8000);
 
         actions
@@ -32,9 +33,9 @@ public class ActionsCLass3 extends TestBase {
 
     @Test
     public void keysUpDown1() throws InterruptedException {
-        driver.get("https://www.amazon.com/");
-        WebElement searchBox=driver.findElement(By.id("twotabsearchtextbox"));
-        Actions actions = new Actions(driver);
+        Driver.getDriver().get("https://www.amazon.com/");
+        WebElement searchBox=Driver.getDriver().findElement(By.id("twotabsearchtextbox"));
+        Actions actions = new Actions(Driver.getDriver());
         actions
                 .keyDown(searchBox, Keys.SHIFT)//Pressing shift on the search box element
                 .sendKeys("iPhone X prices")//typing in the box

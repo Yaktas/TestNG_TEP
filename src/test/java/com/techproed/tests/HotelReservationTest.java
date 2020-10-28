@@ -1,10 +1,12 @@
 package com.techproed.tests;
+
+import com.techproed.pages.HotelReservationPage;
+import com.techproed.pages.KaolaDefaultPage;
 import com.techproed.pages.KaolaLoginPage;
-import com.techproed.pages.KaolaLoginPage1;
 import com.techproed.pages.KaolaMainPage;
-import com.techproed.pages.KaolaMainPage1;
 import com.techproed.utilities.ConfigReader;
 import com.techproed.utilities.Driver;
+import com.techproed.utilities.ReusableMethods;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,48 +19,48 @@ public class HotelReservationTest  {
     //CREATE A SEPERATE LOG IN METHOD
     //CREATE A PAGE CLASS TO STORE PAGE OBJECTS
     //USE THAT PAGE OBJECTS IN THIS CLASS.
+    HotelReservationPage hotelReservationPage= new HotelReservationPage();
+    KaolaDefaultPage kaolaDefaultPage=new KaolaDefaultPage();
     public void login(){
         Driver.getDriver().get(ConfigReader.getProperty("kaola_url"));
-        KaolaMainPage1 kaolaMainPage1=new KaolaMainPage1();
-        kaolaMainPage1.kaolaMainLoginButton.click();
-        KaolaLoginPage1 kaolaLoginPage1=new KaolaLoginPage1();
-        kaolaLoginPage1.kaolaUsername.sendKeys(ConfigReader.getProperty("username"));
-        kaolaLoginPage1.kaolaPass.sendKeys(ConfigReader.getProperty("password"));
-        kaolaLoginPage1.kaolaLoginButton.click();
+        KaolaMainPage kaolaMainPage=new KaolaMainPage();
+        kaolaMainPage.kaolaMainLoginButton.click();
+        KaolaLoginPage kaolaLoginPage=new KaolaLoginPage();
+        kaolaLoginPage.kaolaUsername.sendKeys(ConfigReader.getProperty("username"));
+        kaolaLoginPage.kaolaPass.sendKeys(ConfigReader.getProperty("password"));
+        kaolaLoginPage.kaolaLoginButton.click();
     }
 
     @Test
     public void reservationTest(){
         login();
-        WebElement hotelManagement = Driver.getDriver().findElement(By.xpath("(//span[@class='title'])[3]"));
-        hotelManagement.click();
-        WebElement roomReservation = Driver.getDriver().findElement(By.xpath("//a[@href='/admin/RoomReservationAdmin']"));
-        roomReservation.click();
-        WebElement addRoomReservation = Driver.getDriver().findElement(By.xpath("//span[@class ='hidden-480']"));
-        addRoomReservation.click();
-        WebElement selectUser = Driver.getDriver().findElement(By.xpath("(//select)[1]"));
-        Select selectSelectUser = new Select(selectUser);
+        kaolaDefaultPage.hotelManagement.click();
+        kaolaDefaultPage.roomReservations.click();
+        ReusableMethods.waitFor(1);
+        hotelReservationPage.addRoomReservation.click();
+        ReusableMethods.waitFor(1);
+        Select selectSelectUser = new Select(hotelReservationPage.idUser);
         selectSelectUser.selectByIndex(1);
-        WebElement selectRoom = Driver.getDriver().findElement(By.xpath("(//select)[2]"));
-        Select selectSelectRoom = new Select(selectRoom);
+        Select selectSelectRoom = new Select(hotelReservationPage.selectRoom);
         selectSelectRoom.selectByVisibleText("King Room");
-        WebElement price = Driver.getDriver().findElement(By.xpath("(//input)[1]"));
-        price.sendKeys("600");
-        Driver.getDriver().findElement(By.xpath("//input[@name='DateStart']")).sendKeys("09/26/2020");
-        Driver.getDriver().findElement(By.xpath("//input[@id = 'DateEnd']")).sendKeys("09/30/2020");
-        Driver.getDriver().findElement(By.xpath("//input[@id = 'AdultAmount']")).sendKeys("2");
-        Driver.getDriver().findElement(By.xpath("//input[@id = 'ChildrenAmount']")).sendKeys("2");
-        Driver.getDriver().findElement(By.xpath("//input[@id = 'ContactPhone']")).sendKeys("0491255544");
-        Driver.getDriver().findElement(By.xpath("//input[@id='ContactNameSurname']")).sendKeys("Memet ekici");
-        Driver.getDriver().findElement(By.xpath("//input[@id='ContactEmail']")).sendKeys("ggg@gmail.com");
-        Driver.getDriver().findElement(By.xpath("//input[@id='Notes']")).sendKeys("Herşey ok");
-        Driver.getDriver().findElement(By.xpath("//input[@id='IsPaid']")).click();
-        Driver.getDriver().findElement(By.xpath("//button[@id='btnSubmit']")).click();
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
-        WebElement popUp = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='bootbox-body']")));
-        String message = Driver.getDriver().findElement(By.xpath("//div[@class='bootbox-body']")).getText();
-        System.out.println(message);
-        Assert.assertEquals(message,"RoomReservation was inserted successfully");
+        hotelReservationPage.price.sendKeys("600");
+        selectSelectUser.selectByIndex(1);
+        hotelReservationPage.dateStart.sendKeys("12/26/2020");
+        selectSelectUser.selectByIndex(1);
+        hotelReservationPage.dateEnd.sendKeys("12/30/2020");
+        hotelReservationPage.adultAmount.sendKeys("2");
+        hotelReservationPage.childrenAmount.sendKeys("2");
+        hotelReservationPage.contactName.sendKeys("John");
+        hotelReservationPage.contactPhone.sendKeys("3491255544");
+        hotelReservationPage.contactEmail.sendKeys("ggg@gmail.com");
+        hotelReservationPage.contactNotes.sendKeys("Hersey ok");
+        hotelReservationPage.isApproved.click();
+        hotelReservationPage.isPaid.click();
+        selectSelectUser.selectByIndex(1);
+        hotelReservationPage.saveButton.click();
+        WebElement popUpMessage=ReusableMethods.waitForVisibility(By.xpath("//div[@class='bootbox-body']"),3);
+        System.out.println(popUpMessage.getText());
+        Assert.assertEquals(popUpMessage.getText(),"RoomReservation was inserted successfully");
         Driver.getDriver().findElement(By.xpath("//button[@data-bb-handler='ok']")).click();
     }
 }

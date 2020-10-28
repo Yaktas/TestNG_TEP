@@ -33,7 +33,6 @@ public class ExcelAutomation {
             dtPage.searchBox.sendKeys(appData.get("firstname"));
             ReusableMethods.waitFor(1);
             Assert.assertTrue(dtPage.nameField.getText().contains(appData.get("firstname")));
-            Driver.closeDriver();
         }
     }
 }
